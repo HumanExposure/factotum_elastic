@@ -32,35 +32,3 @@
     }
   }
 }
-{
-  "mappings": {
-    "doc": {
-      "properties": {
-        "data_document_id": {
-          "type": "integer"
-        },
-        "sid": {
-          "type": "keyword"
-        },
-        "true_cas": {
-          "type": "keyword"
-        },
-        "true_chemname": {
-          "type": "keyword"
-        },
-        "facet_model_name": {
-          "type": "keyword"
-        },
-        "product_count": {
-          "type": "integer"
-        },
-        "raw_cas": {
-          "type": "keyword"
-        },
-        "raw_chem_name": {
-          "type": "text"
-        }
-      }
-    }
-  }
-}
