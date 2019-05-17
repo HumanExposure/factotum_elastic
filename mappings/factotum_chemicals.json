@@ -1,5 +1,3 @@
-// PUT factotum_chemicals/ # to load this mapping, 
-// uncomment this line and paste everything into kibana
 {
   "mappings": {
     "doc": {
