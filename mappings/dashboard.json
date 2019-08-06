@@ -5,59 +5,71 @@
         "@timestamp": {
           "type": "date"
         },
-        "facet_model_name": {
-          "type": "keyword"
-        },
         "rawchem_id": {
           "type": "integer"
         },
-        "raw_cas": {
+        "rawchem_cas": {
           "type": "keyword"
         },
-        "raw_chem_name": {
+        "rawchem_name": {
           "type": "text"
         },
-        "dtxsid": {
+        "truechem_dtxsid": {
           "type": "keyword"
         },
-        "true_cas": {
+        "truechem_cas": {
           "type": "keyword"
         },
-        "true_chemname": {
-          "type": "keyword"
+        "truechem_name": {
+          "type": "text"
         },
-        "data_document_id": {
+        "datadocument_id": {
           "type": "integer"
         },
-        "data_document_title": {
+        "datadocument_grouptype": {
+          "type": "keyword"
+        },
+        "datadocument_title": {
           "type": "text"
         },
-        "data_document_pdf": {
-          "type": "keyword"
+        "datadocument_subtitle": {
+          "type": "text"
         },
         "product_id": {
           "type": "integer"
         },
+        "product_upc": {
+          "type": "keyword"
+        },
+        "product_manufacturer": {
+          "type": "keyword"
+        },
+        "product_brandname": {
+          "type": "keyword"
+        },
         "product_title": {
+          "type": "text"
+        },
+        "product_description": {
           "type": "text"
         },
         "puc_id": {
           "type": "integer"
         },
-        "puc_gen_cat": {
+        "puc_kind": {
+          "type": "keyword"
+        },
+        "puc_gencat": {
           "type": "text"
         },
-        "puc_prod_fam": {
+        "puc_prodfam": {
           "type": "text"
         },
-        "puc_prod_type": {
+        "puc_prodtype": {
           "type": "text"
         },
         "puc_description": {
           "type": "text"
-        },
-        "puc_kind": {
-          "type": "keyword"
         }
       }
     }
