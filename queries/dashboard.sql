@@ -94,86 +94,85 @@ CREATE OR REPLACE VIEW `id|id` AS
         NATURAL RIGHT JOIN `datadocument|product`
         NATURAL RIGHT JOIN `product|puc`;
 --Actual Logstash query
-CREATE OR REPLACE VIEW `logstash_dashboard` AS
-    SELECT
-        id.rawchem_id,
-        rc.raw_cas as rawchem_cas,
-        rc.raw_chem_name as rawchem_name,
-        dss.sid as truechem_dtxsid,
-        dss.true_cas as truechem_cas,
-        dss.true_chemname as truechem_name,
-        id.datadocument_id,
-        gt.code as datadocument_grouptype,
-        dd.title as datadocument_title,
-        dd.subtitle as datadocument_subtitle,
-        id.product_id,
-        p.upc as product_upc,
-        p.manufacturer as product_manufacturer,
-        p.brand_name as product_brandname,
-        p.title as product_title,
-        (SELECT
-            CONCAT(
-                p.short_description,
-                '\n\n',
-                p.long_description
+SELECT
+    id.rawchem_id,
+    rc.raw_cas as rawchem_cas,
+    rc.raw_chem_name as rawchem_name,
+    dss.sid as truechem_dtxsid,
+    dss.true_cas as truechem_cas,
+    dss.true_chemname as truechem_name,
+    id.datadocument_id,
+    gt.code as datadocument_grouptype,
+    dd.title as datadocument_title,
+    dd.subtitle as datadocument_subtitle,
+    id.product_id,
+    p.upc as product_upc,
+    p.manufacturer as product_manufacturer,
+    p.brand_name as product_brandname,
+    p.title as product_title,
+    (SELECT
+        CONCAT(
+            p.short_description,
+            '\n\n',
+            p.long_description
+        )
+    ) as product_description,
+    id.puc_id,
+    puc.kind as puc_kind,
+    puc.gen_cat as puc_gencat,
+    puc.prod_fam as puc_prodfam,
+    puc.prod_type as puc_prodtype,
+    puc.description as puc_description,
+    (SELECT
+        UNIX_TIMESTAMP(
+            GREATEST(
+                COALESCE(elp.updated_at, 0),
+                COALESCE(ehh.updated_at, 0),
+                COALESCE(efu.updated_at, 0),
+                COALESCE(ec.updated_at, 0),
+                COALESCE(dss.updated_at, 0),
+                COALESCE(et.updated_at, 0),
+                COALESCE(dd.updated_at, 0),
+                COALESCE(dg.updated_at, 0),
+                COALESCE(dg.updated_at, 0),
+                COALESCE(gt.updated_at, 0),
+                COALESCE(pd.updated_at, 0),
+                COALESCE(p.updated_at, 0),
+                COALESCE(pp.updated_at, 0),
+                COALESCE(puc.updated_at, 0)
             )
-        ) as product_description,
-        id.puc_id,
-        puc.kind as puc_kind,
-        puc.gen_cat as puc_gencat,
-        puc.prod_fam as puc_prodfam,
-        puc.prod_type as puc_prodtype,
-        puc.description as puc_description,
-        (SELECT
-            UNIX_TIMESTAMP(
-                GREATEST(
-                    COALESCE(elp.updated_at, 0),
-                    COALESCE(ehh.updated_at, 0),
-                    COALESCE(efu.updated_at, 0),
-                    COALESCE(ec.updated_at, 0),
-                    COALESCE(dss.updated_at, 0),
-                    COALESCE(et.updated_at, 0),
-                    COALESCE(dd.updated_at, 0),
-                    COALESCE(dg.updated_at, 0),
-                    COALESCE(dg.updated_at, 0),
-                    COALESCE(gt.updated_at, 0),
-                    COALESCE(pd.updated_at, 0),
-                    COALESCE(p.updated_at, 0),
-                    COALESCE(pp.updated_at, 0),
-                    COALESCE(puc.updated_at, 0)
-                )
-            )
-        ) AS updated_at
-    FROM
-        `id|id` id
-        LEFT JOIN dashboard_rawchem rc ON id.rawchem_id = rc.id
-        LEFT JOIN dashboard_datadocument dd ON id.datadocument_id = dd.id
-        LEFT JOIN dashboard_product p ON id.product_id = p.id
-        LEFT JOIN dashboard_puc puc ON id.puc_id = puc.id
-        LEFT JOIN dashboard_extractedlistpresence elp ON id.rawchem_id = elp.rawchem_ptr_id
-        LEFT JOIN dashboard_extractedhhrec ehh ON id.rawchem_id = ehh.rawchem_ptr_id
-        LEFT JOIN dashboard_extractedfunctionaluse efu ON id.rawchem_id = efu.rawchem_ptr_id
-        LEFT JOIN dashboard_extractedchemical ec ON id.rawchem_id = ec.rawchem_ptr_id
-        LEFT JOIN dashboard_extractedtext et ON id.datadocument_id = et.data_document_id
-        LEFT JOIN dashboard_productdocument pd ON id.datadocument_id = pd.document_id
-        LEFT JOIN dashboard_producttopuc pp ON id.product_id = pp.product_id
-        LEFT JOIN dashboard_dsstoxlookup dss ON rc.dsstox_id = dss.id
-        LEFT JOIN dashboard_datagroup dg ON dd.data_group_id = dg.id
-        LEFT JOIN dashboard_grouptype gt ON dg.group_type_id = gt.id
-    WHERE
-        elp.updated_at > 0 OR
-        ehh.updated_at > 0 OR
-        efu.updated_at > 0 OR
-        ec.updated_at > 0 OR
-        dss.updated_at > 0 OR
-        et.updated_at > 0 OR
-        dd.updated_at > 0 OR
-        dg.updated_at > 0 OR
-        dg.updated_at > 0 OR
-        gt.updated_at > 0 OR
-        pd.updated_at > 0 OR
-        p.updated_at > 0 OR
-        pp.updated_at > 0 OR
-        puc.updated_at > 0
-    ORDER BY
-        updated_at;
+        )
+    ) AS updated_at
+FROM
+    `id|id` id
+    LEFT JOIN dashboard_rawchem rc ON id.rawchem_id = rc.id
+    LEFT JOIN dashboard_datadocument dd ON id.datadocument_id = dd.id
+    LEFT JOIN dashboard_product p ON id.product_id = p.id
+    LEFT JOIN dashboard_puc puc ON id.puc_id = puc.id
+    LEFT JOIN dashboard_extractedlistpresence elp ON id.rawchem_id = elp.rawchem_ptr_id
+    LEFT JOIN dashboard_extractedhhrec ehh ON id.rawchem_id = ehh.rawchem_ptr_id
+    LEFT JOIN dashboard_extractedfunctionaluse efu ON id.rawchem_id = efu.rawchem_ptr_id
+    LEFT JOIN dashboard_extractedchemical ec ON id.rawchem_id = ec.rawchem_ptr_id
+    LEFT JOIN dashboard_extractedtext et ON id.datadocument_id = et.data_document_id
+    LEFT JOIN dashboard_productdocument pd ON id.datadocument_id = pd.document_id
+    LEFT JOIN dashboard_producttopuc pp ON id.product_id = pp.product_id
+    LEFT JOIN dashboard_dsstoxlookup dss ON rc.dsstox_id = dss.id
+    LEFT JOIN dashboard_datagroup dg ON dd.data_group_id = dg.id
+    LEFT JOIN dashboard_grouptype gt ON dg.group_type_id = gt.id
+WHERE
+    elp.updated_at > :sql_last_value OR
+    ehh.updated_at > :sql_last_value OR
+    efu.updated_at > :sql_last_value OR
+    ec.updated_at > :sql_last_value OR
+    dss.updated_at > :sql_last_value OR
+    et.updated_at > :sql_last_value OR
+    dd.updated_at > :sql_last_value OR
+    dg.updated_at > :sql_last_value OR
+    dg.updated_at > :sql_last_value OR
+    gt.updated_at > :sql_last_value OR
+    pd.updated_at > :sql_last_value OR
+    p.updated_at > :sql_last_value OR
+    pp.updated_at > :sql_last_value OR
+    puc.updated_at > :sql_last_value
+ORDER BY
+    updated_at;
