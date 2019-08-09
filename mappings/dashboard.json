@@ -49,7 +49,10 @@
       "product_title": {
         "type": "text"
       },
-      "product_description": {
+      "product_shortdescription": {
+        "type": "text"
+      },
+      "product_longdescription": {
         "type": "text"
       },
       "puc_id": {
