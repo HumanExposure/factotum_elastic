@@ -6,7 +6,13 @@ SELECT
     NULLIF(dss.true_cas, "") as truechem_cas,
     NULLIF(dss.true_chemname, "") as truechem_name,
     id.datadocument_id as datadocument_id,
-    NULLIF(gt.code, "") as datadocument_grouptype,
+    (
+        CASE
+            WHEN gt.code IS NULL THEN NULL
+            WHEN gt.code = "" THEN NULL
+            ELSE CONCAT(gt.title, " (", gt.code, ")")
+        END
+    ) as datadocument_grouptype,
     NULLIF(dd.title, "") as datadocument_title,
     NULLIF(dd.subtitle, "") as datadocument_subtitle,
     id.product_id as product_id,
