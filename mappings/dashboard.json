@@ -64,6 +64,9 @@
       "puc_gencat": {
         "type": "text"
       },
+      "puc_gencatfacet": {
+        "type": "keyword"
+      },
       "puc_prodfam": {
         "type": "text"
       },
