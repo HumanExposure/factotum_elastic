@@ -1,0 +1,83 @@
+{
+  "mappings": {
+    "doc": {
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "rawchem_id": {
+          "type": "integer"
+        },
+        "rawchem_cas": {
+          "type": "keyword"
+        },
+        "rawchem_name": {
+          "type": "text"
+        },
+        "truechem_dtxsid": {
+          "type": "keyword"
+        },
+        "truechem_cas": {
+          "type": "keyword"
+        },
+        "truechem_name": {
+          "type": "text"
+        },
+        "datadocument_id": {
+          "type": "integer"
+        },
+        "datadocument_grouptype": {
+          "type": "keyword"
+        },
+        "datadocument_title": {
+          "type": "text"
+        },
+        "datadocument_subtitle": {
+          "type": "text"
+        },
+        "product_id": {
+          "type": "integer"
+        },
+        "product_upc": {
+          "type": "keyword"
+        },
+        "product_manufacturer": {
+          "type": "keyword"
+        },
+        "product_brandname": {
+          "type": "keyword"
+        },
+        "product_title": {
+          "type": "text"
+        },
+        "product_shortdescription": {
+          "type": "text"
+        },
+        "product_longdescription": {
+          "type": "text"
+        },
+        "puc_id": {
+          "type": "integer"
+        },
+        "puc_kind": {
+          "type": "keyword"
+        },
+        "puc_gencat": {
+          "type": "text"
+        },
+        "puc_gencatfacet": {
+          "type": "keyword"
+        },
+        "puc_prodfam": {
+          "type": "text"
+        },
+        "puc_prodtype": {
+          "type": "text"
+        },
+        "puc_description": {
+          "type": "text"
+        }
+      }
+    }
+  }
+}
