@@ -59,20 +59,3 @@ FROM
     LEFT JOIN dashboard_dsstoxlookup dss ON rc.dsstox_id = dss.id
     LEFT JOIN dashboard_datagroup dg ON dd.data_group_id = dg.id
     LEFT JOIN dashboard_grouptype gt ON dg.group_type_id = gt.id
-WHERE
-    elp.updated_at > :sql_last_value OR
-    ehh.updated_at > :sql_last_value OR
-    efu.updated_at > :sql_last_value OR
-    ec.updated_at > :sql_last_value OR
-    dss.updated_at > :sql_last_value OR
-    et.updated_at > :sql_last_value OR
-    dd.updated_at > :sql_last_value OR
-    dg.updated_at > :sql_last_value OR
-    dg.updated_at > :sql_last_value OR
-    gt.updated_at > :sql_last_value OR
-    pd.updated_at > :sql_last_value OR
-    p.updated_at > :sql_last_value OR
-    pp.updated_at > :sql_last_value OR
-    puc.updated_at > :sql_last_value
-ORDER BY
-    updated_at;
