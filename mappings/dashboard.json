@@ -2,9 +2,6 @@
   "mappings": {
     "doc": {
       "properties": {
-        "@timestamp": {
-          "type": "date"
-        },
         "rawchem_id": {
           "type": "integer"
         },
