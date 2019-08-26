@@ -22,40 +22,13 @@ SELECT
     NULLIF(puc.gen_cat, "") as puc_gencatfacet,
     NULLIF(puc.prod_fam, "") as puc_prodfam,
     NULLIF(puc.prod_type, "") as puc_prodtype,
-    NULLIF(puc.description, "") as puc_description,
-    (SELECT
-        UNIX_TIMESTAMP(
-            GREATEST(
-                COALESCE(elp.updated_at, 0),
-                COALESCE(ehh.updated_at, 0),
-                COALESCE(efu.updated_at, 0),
-                COALESCE(ec.updated_at, 0),
-                COALESCE(dss.updated_at, 0),
-                COALESCE(et.updated_at, 0),
-                COALESCE(dd.updated_at, 0),
-                COALESCE(dg.updated_at, 0),
-                COALESCE(dg.updated_at, 0),
-                COALESCE(gt.updated_at, 0),
-                COALESCE(pd.updated_at, 0),
-                COALESCE(p.updated_at, 0),
-                COALESCE(pp.updated_at, 0),
-                COALESCE(puc.updated_at, 0)
-            )
-        )
-    ) AS updated_at
+    NULLIF(puc.description, "") as puc_description
 FROM
     `logstash.id|id` id
     LEFT JOIN dashboard_rawchem rc ON id.rawchem_id = rc.id
     LEFT JOIN dashboard_datadocument dd ON id.datadocument_id = dd.id
     LEFT JOIN dashboard_product p ON id.product_id = p.id
     LEFT JOIN dashboard_puc puc ON id.puc_id = puc.id
-    LEFT JOIN dashboard_extractedlistpresence elp ON id.rawchem_id = elp.rawchem_ptr_id
-    LEFT JOIN dashboard_extractedhhrec ehh ON id.rawchem_id = ehh.rawchem_ptr_id
-    LEFT JOIN dashboard_extractedfunctionaluse efu ON id.rawchem_id = efu.rawchem_ptr_id
-    LEFT JOIN dashboard_extractedchemical ec ON id.rawchem_id = ec.rawchem_ptr_id
-    LEFT JOIN dashboard_extractedtext et ON id.datadocument_id = et.data_document_id
-    LEFT JOIN dashboard_productdocument pd ON id.datadocument_id = pd.document_id
-    LEFT JOIN dashboard_producttopuc pp ON id.product_id = pp.product_id
     LEFT JOIN dashboard_dsstoxlookup dss ON rc.dsstox_id = dss.id
     LEFT JOIN dashboard_datagroup dg ON dd.data_group_id = dg.id
-    LEFT JOIN dashboard_grouptype gt ON dg.group_type_id = gt.id
+    LEFT JOIN dashboard_grouptype gt ON dg.group_type_id = gt.id;
