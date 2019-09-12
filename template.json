@@ -1,4 +1,5 @@
 {
+  "index_patterns": ["factotum"],
   "mappings": {
     "properties": {
       "rawchem_id": {
