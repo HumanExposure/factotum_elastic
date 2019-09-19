@@ -1,10 +1,9 @@
 FROM logstash:7.3.1
 
-ARG MYSQL_CONNECTOR_VERSION=8.0.17
-
 ENV JDBC_DRIVER_LIBRARY="" \
     QUERY_PATH="/usr/share/logstash/query.sql" \
-    TEMPLATE_PATH="/usr/share/logstash/template.json"
+    TEMPLATE_PATH="/usr/share/logstash/template.json" \
+    MYSQL_CONNECTOR_VERSION=8.0.17
 
 # Add MySQL connector
 ADD https://repo1.maven.org/maven2/mysql/mysql-connector-java/"${MYSQL_CONNECTOR_VERSION}"/mysql-connector-java-"${MYSQL_CONNECTOR_VERSION}".jar /usr/share/logstash/logstash-core/lib/jars/mysql-connector.jar
