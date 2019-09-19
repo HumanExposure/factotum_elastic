@@ -1,5 +1,30 @@
 {
-  "index_patterns": ["factotum"],
+  "index_patterns": ["dashboard"],
+  "settings": {
+    "index": {
+        "analysis": {
+            "analyzer": {
+                "chem_synonym": {
+                    "tokenizer": "whitespace",
+                    "filter": [
+                        "asciifolding",
+                        "lowercase",
+                        "chem_synonym"
+                    ]
+                }
+            },
+            "filter": {
+                "chem_synonym": {
+                    "type": "synonym",
+                    "synonyms": [
+                        "Benzoic acid, Ethyl paraben, ETHYL PARASEPT,Ethyl p-hydroxybenzoate => Ethylparaben",
+                        "eau, H2O, aqua => Water"
+                    ]
+                }
+            }
+        }
+    }
+},
   "mappings": {
     "properties": {
       "rawchem_id": {
@@ -9,7 +34,8 @@
         "type": "keyword"
       },
       "rawchem_name": {
-        "type": "text"
+        "type": "text",
+        "analyzer": "chem_synonym"
       },
       "truechem_dtxsid": {
         "type": "keyword"
@@ -18,7 +44,8 @@
         "type": "keyword"
       },
       "truechem_name": {
-        "type": "text"
+        "type": "text",
+        "analyzer": "chem_synonym"
       },
       "datadocument_id": {
         "type": "integer"
@@ -60,12 +87,10 @@
         "type": "keyword"
       },
       "puc_gencat": {
-        "type": "text",
-        "fields": {
-          "keyword": {
-            "type": "keyword"
-          }
-        }
+            "type": "text"
+      },
+      "puc_gencatfacet": {
+        "type": "keyword"
       },
       "puc_prodfam": {
         "type": "text"

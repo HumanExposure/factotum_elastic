@@ -19,6 +19,7 @@ SELECT
     id.puc_id as puc_id,
     NULLIF(puc.kind, "") as puc_kind,
     NULLIF(puc.gen_cat, "") as puc_gencat,
+    NULLIF(puc.gen_cat, "") as puc_gencatfacet,
     NULLIF(puc.prod_fam, "") as puc_prodfam,
     NULLIF(puc.prod_type, "") as puc_prodtype,
     NULLIF(puc.description, "") as puc_description
