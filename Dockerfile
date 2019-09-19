@@ -11,7 +11,6 @@ ADD https://repo1.maven.org/maven2/mysql/mysql-connector-java/"${MYSQL_CONNECTOR
 
 # Add repository files
 COPY query.sql /usr/share/logstash/
-COPY query.sql /usr/share/logstash/
 COPY logstash.conf /usr/share/logstash/pipeline
 COPY template.json /usr/share/logstash/
 
