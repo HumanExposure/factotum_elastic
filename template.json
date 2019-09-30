@@ -16,10 +16,7 @@
             "filter": {
                 "chem_synonym": {
                     "type": "synonym",
-                    "synonyms": [
-                        "Benzoic acid, Ethyl paraben, ETHYL PARASEPT,Ethyl p-hydroxybenzoate => Ethylparaben",
-                        "eau, H2O, aqua => Water"
-                    ]
+                    "synonyms_path" : "chemical_synonyms.txt"
                 }
             }
         }
