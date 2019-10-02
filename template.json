@@ -8,6 +8,7 @@
                     "tokenizer": "keyword",
                     "filter": [
                         "lowercase",
+                        "comma_replacer",
                         "chem_synonym"
                     ]
                 }
@@ -16,7 +17,12 @@
                 "chem_synonym": {
                     "type": "synonym",
                     "synonyms_path" : "chemical_synonyms.txt"
-                }
+                },
+                "comma_replacer": {
+                "type": "pattern_replace",
+                "pattern": ",",
+                "replacement": "@"
+              }
             }
         }
     }
