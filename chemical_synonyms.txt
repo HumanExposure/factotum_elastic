@@ -1,4 +1,4 @@
 Benzoic acid, Ethyl paraben, ETHYL PARASEPT,Ethyl p-hydroxybenzoate => Ethylparaben
-eau, H2O, aqua, water\\, distilled => Water
+eau, H2O, aqua, water_ distilled => Water
 aspartam, aspartamo, Aspartylphenylalanine methyl ester, Canderel => Aspartame
 5-(2-Chloro-alapha_alpha_alpha-trifluoro-p-tolyloxy)-2-nitrobenzoic acid" => Acifluorfen
