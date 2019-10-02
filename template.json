@@ -7,7 +7,6 @@
                 "chem_synonym": {
                     "tokenizer": "keyword",
                     "filter": [
-                        "asciifolding",
                         "lowercase",
                         "chem_synonym"
                     ]
