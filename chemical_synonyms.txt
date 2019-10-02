@@ -1,3 +1,4 @@
-Benzoic acid, Ethyl paraben, ETHYL PARASEPT,Ethyl p-hydroxybenzoate => Ethylparaben,
-eau, H2O, aqua => Water
+Benzoic acid, Ethyl paraben, ETHYL PARASEPT,Ethyl p-hydroxybenzoate => Ethylparaben
+eau, H2O, aqua, water\\, distilled => Water
 aspartam, aspartamo, Aspartylphenylalanine methyl ester, Canderel => Aspartame
+Amino-alpha-carboline,2-Amino-alpha-carboline,BRN 0744369,UNII-P0GZ1ICS6X,2-Amino-9H-pyrido[2\\,3-b]indole => A-alpha-C

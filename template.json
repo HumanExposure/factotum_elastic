@@ -5,7 +5,7 @@
         "analysis": {
             "analyzer": {
                 "chem_synonym": {
-                    "tokenizer": "whitespace",
+                    "tokenizer": "keyword",
                     "filter": [
                         "asciifolding",
                         "lowercase",
