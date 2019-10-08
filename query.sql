@@ -31,4 +31,4 @@ FROM
     LEFT JOIN dashboard_puc puc ON id.puc_id = puc.id
     LEFT JOIN dashboard_dsstoxlookup dss ON rc.dsstox_id = dss.id
     LEFT JOIN dashboard_datagroup dg ON dd.data_group_id = dg.id
-    LEFT JOIN dashboard_grouptype gt ON dg.group_type_id = gt.id;
+    LEFT JOIN dashboard_grouptype gt ON dg.group_type_id = gt.id

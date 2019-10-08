@@ -1,4 +1,32 @@
 {
+  "index_patterns": ["dashboard"],
+  "settings": {
+    "index": {
+        "analysis": {
+            "analyzer": {
+                "chem_synonym": {
+                    "tokenizer": "keyword",
+                    "filter": [
+                        "lowercase",
+                        "comma_replacer",
+                        "chem_synonym"
+                    ]
+                }
+            },
+            "filter": {
+                "chem_synonym": {
+                    "type": "synonym",
+                    "synonyms_path" : "chemical_synonyms.txt"
+                },
+                "comma_replacer": {
+                "type": "pattern_replace",
+                "pattern": ",",
+                "replacement": "@"
+              }
+            }
+        }
+    }
+  },
   "mappings": {
     "properties": {
       "rawchem_id": {
@@ -8,7 +36,8 @@
         "type": "keyword"
       },
       "rawchem_name": {
-        "type": "text"
+        "type": "text",
+        "analyzer": "chem_synonym"
       },
       "truechem_dtxsid": {
         "type": "keyword"
@@ -17,7 +46,8 @@
         "type": "keyword"
       },
       "truechem_name": {
-        "type": "text"
+        "type": "text",
+        "analyzer": "chem_synonym"
       },
       "datadocument_id": {
         "type": "integer"
@@ -59,7 +89,7 @@
         "type": "keyword"
       },
       "puc_gencat": {
-        "type": "text"
+            "type": "text"
       },
       "puc_gencatfacet": {
         "type": "keyword"
