@@ -1,18 +1,6 @@
 # Factotum Elasticsearch
 
-## Indexes
+## Docker
 
-### `dashboard`
-
-Install the mappings for the `dashboard` index with a `PUT` command in the Kibana console:
-```
-PUT dashboard/
-{
-  "mappings": {
-    "doc": {
-      "properties": {
-        "@timestamp": {
-          "type": "date"
-        },
-        ... the rest of mappings/dashboard.json
-```
+`docker build . -t factotum-elastic` will build from the Dockerfile in the current working directory and label the built image as `factotum-elastic:latest`
+`docker-compose build factotum-elastic` will build the Dockerfile in `https://github.com/HumanExposure/factotum_elastic` in the branch as specified in the environment variable and label the built image as `factotum-elastic:latest`
