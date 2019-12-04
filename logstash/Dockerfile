@@ -13,7 +13,7 @@ ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.s
 
 # Add repository files
 COPY query.sql /usr/share/logstash/
-COPY pipelines.yml /usr/share/logstash/config/pipelines.yml
+COPY pipelines.yml /usr/share/logstash/config/
 COPY logstash.conf /usr/share/logstash/pipeline
 COPY factotum_ws_logs.conf /usr/share/logstash/pipeline
 COPY template.json /usr/share/logstash/
