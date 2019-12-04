@@ -13,19 +13,23 @@ ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.s
 
 # Add repository files
 COPY query.sql /usr/share/logstash/
+COPY pipelines.yml /usr/share/logstash/config/pipelines.yml
 COPY logstash.conf /usr/share/logstash/pipeline
+COPY factotum_ws_logs.conf /usr/share/logstash/pipeline
 COPY template.json /usr/share/logstash/
 
 # Fix file permissions
 USER root
 RUN chown logstash:logstash \
-        /usr/share/logstash/query.sql \
-        /usr/share/logstash/pipeline/logstash.conf \
-        /usr/share/logstash/template.json \
-        /usr/share/logstash/logstash-core/lib/jars/mysql-connector.jar \
-        /usr/local/bin/wait-for-it \
- && chmod +x /usr/share/logstash/logstash-core/lib/jars/mysql-connector.jar \
- && chmod +x /usr/local/bin/wait-for-it
+    /usr/share/logstash/query.sql \
+    /usr/share/logstash/pipeline/logstash.conf \
+    /usr/share/logstash/pipeline/factotum_ws_logs.conf \
+    /usr/share/logstash/config/pipelines.yml \
+    /usr/share/logstash/template.json \
+    /usr/share/logstash/logstash-core/lib/jars/mysql-connector.jar \
+    /usr/local/bin/wait-for-it \
+    && chmod +x /usr/share/logstash/logstash-core/lib/jars/mysql-connector.jar \
+    && chmod +x /usr/local/bin/wait-for-it
 
 USER logstash
 
