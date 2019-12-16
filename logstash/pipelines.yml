@@ -1,0 +1,4 @@
+- pipeline.id: dashboard
+  path.config: "/usr/share/logstash/pipeline/logstash.conf"
+- pipeline.id: factotum_ws_logs
+  path.config: "/usr/share/logstash/pipeline/factotum_ws_logs.conf"
