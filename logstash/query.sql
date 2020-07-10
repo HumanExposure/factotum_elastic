@@ -17,7 +17,7 @@ SELECT
     NULLIF(p.short_description, "") as product_shortdescription,
     NULLIF(p.long_description, "") as product_longdescription,
     id.puc_id as puc_id,
-    NULLIF(puc.kind, "") as puc_kind,
+    NULLIF(puckind.code, "") as puc_kind,
     NULLIF(puc.gen_cat, "") as puc_gencat,
     NULLIF(puc.gen_cat, "") as puc_gencatfacet,
     NULLIF(puc.prod_fam, "") as puc_prodfam,
@@ -29,6 +29,7 @@ FROM
     LEFT JOIN dashboard_datadocument dd ON id.datadocument_id = dd.id
     LEFT JOIN dashboard_product p ON id.product_id = p.id
     LEFT JOIN dashboard_puc puc ON id.puc_id = puc.id
+    LEFT JOIN dashboard_puckind puckind on puc.kind_id = puckind.id
     LEFT JOIN dashboard_dsstoxlookup dss ON rc.dsstox_id = dss.id
     LEFT JOIN dashboard_datagroup dg ON dd.data_group_id = dg.id
     LEFT JOIN dashboard_grouptype gt ON dg.group_type_id = gt.id
